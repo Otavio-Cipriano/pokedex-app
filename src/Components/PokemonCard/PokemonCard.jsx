@@ -1,51 +1,60 @@
 import { tint, transparentize } from 'polished';
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import PokeballIcon from '../../misc/PokeballIcon';
+import PokeballIcon from '../../Misc/PokeballIcon';
 
 import colours from '../../Themes/pokemonTypeColors'
+import TypesBadge from '../TypesBadge/TypesBadge';
 
 export default function PokemonCard({ name }) {
     const [pokemon, setPokemon] = useState();
     const [color, setColor] = useState()
+    const [loading, setLoading] = useState(true)
 
     async function getPokemon() {
         let data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
         let json = await data.json()
         setPokemon(json)
         setColor(colours[json?.types[0]?.type?.name])
+        setLoading(false)
     }
 
     useEffect(() => {
         getPokemon()
-    }, [])
+    }, [name])
 
     return (
-        <Card color={color}>
-            <TextContainer>
-                <Name>{pokemon?.name}</Name>
-                {
-                    pokemon?.types?.map((type, index) => {
-                        return (
-                            <Type key={index} color={color}>{type.type.name}</Type>
-                        )
-                    })
-                }
-            </TextContainer>
-            <SpriteContainer>
-                <img src={pokemon?.sprites?.other?.['official-artwork']?.front_default} alt={pokemon?.name} />
-            </SpriteContainer>
-            <PokeballIcon/>
-        </Card>
+        <>{loading ? '':
+            <Card color={color} to={`/${name}`}>
+                <TextContainer>
+                    <Name>{pokemon?.name}</Name>
+                    {
+                        pokemon?.types?.map((type, index) => {
+                            return (
+                                <TypesBadge key={index} color={color}>{type.type.name}</TypesBadge>
+                            )
+                        })
+                    }
+                </TextContainer>
+                <SpriteContainer>
+                    <img src={pokemon?.sprites?.other?.['official-artwork']?.front_default} alt={pokemon?.name} />
+                </SpriteContainer>
+                <PokeballIcon />
+            </Card >
+        }
+
+        </>
     )
 }
 
 
-const Card = styled.div`
+const Card = styled(Link)`
     background-color: ${props => props.color ? transparentize(0.35, props.color) : 'white'};
     max-width: 320px;
     min-width: 320px;
     min-height: 240px;
+    max-height: 240px;
     padding: 1.5rem;
     display: flex;
     align-items: center;
@@ -53,6 +62,14 @@ const Card = styled.div`
     border-radius: 30px;
     position: relative;
     overflow: hidden;
+    text-decoration: none;
+    box-shadow: 3px 4px 8px 0px hsl(0deg 0% 0% / 15%);
+    transition: ease 0.25s;
+    
+    &:hover{
+        transform: scale(1.05);
+    }
+
     >div{
         width: 100%;
     }
@@ -106,13 +123,3 @@ const Name = styled.h3`
     color: white;
     margin: 0 0 10px 6px;
 `;
-
-const Type = styled.span`
-    color: white;
-    text-transform: capitalize;
-    background-color: ${props => props.color ? props.color : 'white'};
-    border-radius: 20px;
-    margin: 5px 0;
-    text-align: center;
-    max-width: 150px;
-`
