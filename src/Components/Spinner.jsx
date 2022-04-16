@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 
 export default function Spinner() {
@@ -9,8 +8,8 @@ export default function Spinner() {
 
 
 const Spin = styled.div`
-    border: 5px solid   gray;
-    border-right: 5px solid rgb(0 0 0 / 80%);
+    border: 5px solid   white;
+    border-right: 5px solid blue;
     height: 25px;
     width: 25px;
     margin: auto;

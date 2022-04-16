@@ -1,13 +1,13 @@
 import React from 'react'
 import GlobalStyle from '../Themes/globalStyle'
-import Main from './Main';
+import Routing from './Routing';
 
 
 export default function App() {
   return (
     <>
       <GlobalStyle />
-      <Main/>
+      <Routing/>
     </>
   );
 }

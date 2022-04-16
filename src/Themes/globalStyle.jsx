@@ -5,9 +5,11 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 body{
-  background-color: #e4e4e4;
+  background-color: #555555;
+  color: white;
   font-family: 'Poppins', sans-serif;
   margin: 0;
+  min-width: 300px;
 }
 `
 
