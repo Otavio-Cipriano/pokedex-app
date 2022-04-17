@@ -1,14 +1,18 @@
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import usePokemonSearch from '../../Hooks/usePokemonSearch';
+import usePokemonSearch from '../Hooks/usePokemonSearch';
+import colours from '../Themes/pokemonTypeColors';
 
 import TypesBadge from './TypesBadge';
 
-export default function PokemonCard({ name }) {
+
+
+ const PokemonCard = React.memo(({ name }) => {
     const {pokemon, color, loading, error} = usePokemonSearch(name)
 
     return (
-        <Card color={color}>
+        <Card color={color} >
             <CardTitle>
                 {pokemon?.name}
             </CardTitle>
@@ -16,7 +20,7 @@ export default function PokemonCard({ name }) {
                 {
                     pokemon?.types.map((type, idx)=>{
                         return(
-                            <TypesBadge key={idx}>{type.name}</TypesBadge>
+                            <TypesBadge key={idx} color={colours[type.type.name]}>{type.type.name}</TypesBadge>
                         )
                     })
                 }
@@ -24,20 +28,24 @@ export default function PokemonCard({ name }) {
             <CardSprite>
                 <img src={pokemon?.sprites.other['official-artwork'].front_default} alt={pokemon?.name}/>
             </CardSprite>
-            <CardNb>#0{pokemon?.id}</CardNb>
+            <CardNb>{pokemon?.id ? `#0${pokemon?.id}` : ''}</CardNb>
         </Card>
     )
-}
+})
+
+export default PokemonCard;
 
 const Card = styled.div`
-    background-color: ${props => props.color ? props.color : 'white'};
-    width: 100%;
-    min-height: 285px;
-    max-width: 450px;
-    margin: 1rem;
+    background-color: ${props => props.color ? props.color : 'transparent'};
     border-radius: 15px;
     padding: 1rem 1.5rem;
     position: relative;
+    transition: ease 0.5s;
+
+    &:hover{
+        transform: scale(1.05);
+        cursor: pointer;
+    }
 `;
 
 const CardTitle = styled.h2`
@@ -46,6 +54,7 @@ const CardTitle = styled.h2`
     font-size: 1.7rem;
     margin: 0;
     color: white;
+    margin-bottom: 10px;
 `;
 
 const CardSprite = styled.div`

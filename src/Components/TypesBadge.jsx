@@ -1,3 +1,4 @@
+import { tint } from 'polished'
 import styled from 'styled-components'
 
 export default function TypesBadge({children, color}) {
@@ -9,7 +10,7 @@ export default function TypesBadge({children, color}) {
 const Type = styled.span`
     color: white;
     text-transform: capitalize;
-    background-color: ${props => props.color ? props.color : 'white'};
+    background-color: ${props => props.color ? tint(0.2, props.color) : 'white'};
     border-radius: 20px;
     margin-right: 5px;
     margin-left: -2px;
