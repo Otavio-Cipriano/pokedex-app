@@ -1,30 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-import colours from "../Themes/pokemonTypeColors";
+export default function usePokemonSearch(query) {
+  const [results, setResults] = useState()
+  const [pokemon, setPokemon] = useState()
+  const [loading, setLoading] = useState(true)
 
-export default function usePokemonSearch(pokemonName) {
-    const [pokemon, setPokemon] = useState()
-    const [color, setColor] = useState()
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
+  useEffect(()=>{
+    setLoading(true)
+    if(!query) return
+    if(results) {
+      let searchByQuery = results.pokemon_entries.filter(pkm => pkm.pokemon_species.name.includes(query.toLowerCase()) || pkm.entry_number == query)
+      setPokemon(searchByQuery)
+      setLoading(false)
+      return
+    }
 
-    useEffect(()=>{
-        if(!pokemonName) return
-
-        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then(async res =>{
-            let data = await res.json()
-            setPokemon(data)
-            setColor(colours[data?.types[0]?.type?.name])
-            setLoading(false)
-        }).catch(err =>{
-            setError(true)
-        })
-    },[pokemonName])
-
-    useEffect(()=>{
-        if(!pokemon) return
-        setLoading(false)
-    },[pokemon])
-
-    return {pokemon, color, loading, error}
+    fetch('https://pokeapi.co/api/v2/pokedex/1/')
+    .then(res => res.json())
+    .then(data => {
+      let searchByQuery = data.pokemon_entries.filter(pkm => pkm.pokemon_species.name.includes(query.toLowerCase()) || pkm.entry_number == query)
+    
+      setPokemon(searchByQuery)
+      setLoading(false)
+      console.log(results)
+    })
+  },[query])
+  
+  return {pokemon, loading}
 }

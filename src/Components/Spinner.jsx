@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 
-export default function Spinner() {
+export default function Spinner({size}) {
     return (
-        <Spin />
+        <Spin size={size}/>
     )
 }
 
 
 const Spin = styled.div`
-    border: 5px solid   white;
-    border-right: 5px solid blue;
-    height: 25px;
-    width: 25px;
+    border: 20px solid rgba(43, 52, 124, 0.8) ;
+    border-right: 20px solid rgba(43, 52, 124, 1);
+    height: ${props => props.size ? props.size : '25px'};
+    width: ${props => props.size ? props.size : '25px'};
     margin: auto;
     border-radius: 50%;
     animation-name: spin;

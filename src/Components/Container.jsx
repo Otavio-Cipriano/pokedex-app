@@ -8,6 +8,6 @@ export default function Container({children}) {
 
 
 const Wrap = styled.div`
-  max-width: 1800px;
+  max-width: 1500px;
   margin: auto;
 `;

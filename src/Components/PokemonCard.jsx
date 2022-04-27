@@ -1,18 +1,17 @@
-import React, { useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
-import usePokemonSearch from '../Hooks/usePokemonSearch';
+import useFetchPokemon from '../Hooks/useFetchPokemon';
 import colours from '../Themes/pokemonTypeColors';
 
 import TypesBadge from './TypesBadge';
 
 
 
- const PokemonCard = React.memo(({ name }) => {
-    const {pokemon, color, loading, error} = usePokemonSearch(name)
+export default function PokemonCard({ name }){
+    const {pokemon, color, loading, error} = useFetchPokemon(name)
 
     return (
-        <Card color={color} >
+        <Card bgColor={color} >
             <CardTitle>
                 {pokemon?.name}
             </CardTitle>
@@ -31,16 +30,14 @@ import TypesBadge from './TypesBadge';
             <CardNb>{pokemon?.id ? `#0${pokemon?.id}` : ''}</CardNb>
         </Card>
     )
-})
-
-export default PokemonCard;
+}
 
 const Card = styled.div`
-    background-color: ${props => props.color ? props.color : 'transparent'};
+    background-color: ${props => props.bgColor ? props.bgColor : ''};
     border-radius: 15px;
     padding: 1rem 1.5rem;
     position: relative;
-    transition: ease 0.5s;
+    transition: ease 0.2s;
 
     &:hover{
         transform: scale(1.05);
@@ -72,6 +69,7 @@ const CardNb = styled.span`
     position: absolute;
     bottom: 1rem;
     opacity: 0.5;
+    color: white;
 `;
 
 const CardTypes = styled.div``;

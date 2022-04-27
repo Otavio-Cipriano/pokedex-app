@@ -5,8 +5,8 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 body{
-  background-color: #555555;
-  color: white;
+  background-color: #eeeeee;
+  color: black;
   font-family: 'Poppins', sans-serif;
   margin: 0;
   min-width: 300px;
