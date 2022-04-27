@@ -1,30 +1,42 @@
 import styled from 'styled-components';
 import PokemonCard from './PokemonCard';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import useFetchPokemonList from '../Hooks/useFetchPokemonList';
+import useElementOnScreen from '../Hooks/useElementOnScreen';
 
-const PokedexList = React.forwardRef(({ pokemonList, loading }, ref) => {
+export default function PokedexList(){
+    const [currentPage, setCurrentPage] = useState(1)
+    const limit = 24
+  
+    const { loading, pokemonList, hasMore } = useFetchPokemonList(currentPage, limit)
+  
+    const {containerRef} = useElementOnScreen((entries)=> {
+      if(loading) return
+      if(!hasMore) return
+      if(entries[0].isIntersecting ){
+        setCurrentPage(prevPage => prevPage + 1)
+      }
+    },{
+        threshold: 1.0
+    })
 
+    useEffect(()=>{
+        if(loading) containerRef.current.scrollIntoView({ behavior: "smooth" }) 
+    },[loading, containerRef])
+  
     return (
         <>
             <Row >
                 {
                     pokemonList.map((pkm, idx) => {
-                        if (pokemonList.length === idx + 1) {
-                            return <div ref={ref} key={idx}><PokemonCard name={pkm.name} /></div>
-                        }
-                        else {
-                            return <PokemonCard name={pkm.name} key={idx} />
-                        }
+                        return <PokemonCard name={pkm.name} key={idx} />
                     })
                 }
             </Row>
-            <LoaderContainer>{loading && <Spin/>}</LoaderContainer>
-            
+            <LoaderContainer ref={containerRef}>{loading && <Spin style={{margin: '20px auto'}}/>}</LoaderContainer>
         </>
     )
-})
-
-export default PokedexList;
+}
 
 const Row = styled.div`
     justify-content: center;
@@ -43,10 +55,6 @@ const Row = styled.div`
 `;
 
 const LoaderContainer = styled.div`
-    position: fixed;
-    bottom: 2rem;
-    right: 50%;
-    right: 50%;
     font-size: 50px;
 `;
 
