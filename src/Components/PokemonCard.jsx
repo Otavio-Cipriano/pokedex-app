@@ -11,7 +11,7 @@ export default function PokemonCard({ name }){
     const {pokemon, color, loading, error} = useFetchPokemon(name)
 
     return (
-        <Card bgColor={color} >
+        <Card bgColor={color} loading={loading ? 'true' : 'false'}>
             <CardTitle>
                 {pokemon?.name}
             </CardTitle>
@@ -33,15 +33,30 @@ export default function PokemonCard({ name }){
 }
 
 const Card = styled.div`
+    background: ${props => props.loading ? 'background: linear-gradient(to bottom, #dddddd 66%, transparent);' : ''};
     background-color: ${props => props.bgColor ? props.bgColor : ''};
     border-radius: 15px;
     padding: 1rem 1.5rem;
     position: relative;
-    transition: ease 0.2s;
+    /* transition: ease 0.2s; */
+    animation-name: show;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in;
 
     &:hover{
         transform: scale(1.05);
         cursor: pointer;
+    }
+
+    @keyframes show{
+        0%{
+            opacity: 0;
+            transform: translateY(100px)
+        }
+        100%{
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 `;
 
