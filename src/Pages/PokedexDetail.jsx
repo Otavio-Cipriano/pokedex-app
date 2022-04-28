@@ -6,7 +6,7 @@ import useFetchPokemon from '../Hooks/useFetchPokemon'
 
 export default function PokedexDetail() {
     const {name} = useParams()
-    const {pokemon,loading,error,color} = useFetchPokemon(name)
+    const {pokemon,loading, color} = useFetchPokemon(name)
     return (    
         <>
             { !loading ?
