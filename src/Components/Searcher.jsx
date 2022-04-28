@@ -5,6 +5,9 @@ import styled from "styled-components"
 import { FaSearch } from 'react-icons/fa'
 
 import useFetchPokemon from "../Hooks/useFetchPokemon";
+import { tint } from "polished";
+
+import Container from './Container'
 
 export default function Searcher() {
   const [query, setQuery] = useState()
@@ -17,15 +20,34 @@ export default function Searcher() {
       setQuery(inputRef.current.value)
     }
   }
+  const handleClick = (e) => {
+    e.preventDefault()
+    if (!inputRef.current.value) return;
+    setQuery(inputRef.current.value)
+  }
 
   return (
-    <Wrap>
-      <h2>Pokedex</h2>
-      <div>
-        <Button><FaSearch /></Button>
-        <Input type="text" ref={inputRef} onKeyDown={handleKey} placeholder="Enter a name or pokedex number" />
-      </div>
-    </Wrap>
+    <Container>
+      <Wrap>
+        <h2>Pokedex</h2>
+        <div>
+          <Button onClick={handleClick}><FaSearch /></Button>
+          <Input type="text" ref={inputRef} onKeyDown={handleKey} placeholder="Enter a name or pokedex number" />
+          <Result searched={pokemon || error ? 'flex' : 'none'} color={color}>
+            {loading && !error ? 'loading...' : ''}
+            {
+              pokemon && !error ?
+                <a href={`/${pokemon?.name}`}>
+                  <img src={pokemon?.sprites.other['official-artwork'].front_default} alt={pokemon?.name} />
+                  <p>{pokemon?.name}</p>
+                </a>
+                :
+                error ? <p>Not Found</p> : ''
+            }
+          </Result>
+        </div>
+      </Wrap>
+    </Container>
   )
 }
 
@@ -41,6 +63,10 @@ const Wrap = styled.div`
     margin: 0;
     font-size: 2.1rem;
   }
+
+  >div{
+    position: relative;
+  }
 `;
 
 const Input = styled.input`
@@ -50,6 +76,8 @@ const Input = styled.input`
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     border: none;
+    background-color: white;
+    box-shadow: 0 1px 3px hsl(0deg 0% 0% / 20%);
 `;
 
 const Button = styled.button`
@@ -61,4 +89,42 @@ const Button = styled.button`
   background-color: white;
   border-right: 1px solid gray;
   cursor: pointer;
+  box-shadow: 0 1px 3px hsl(0deg 0% 0% / 20%);
+`
+
+const Result = styled.div`
+  background-color: var(--clr-light-gray);
+  position: absolute;
+  width: 100%;
+  /* left: 0; */
+  right: 0;
+  margin: auto;
+  /* min-height: 200px; */
+  z-index: 2;
+
+
+  a{
+    display: ${props => props.searched};
+    /* background-color: ${props => props.color ? tint(0.3, props.color) : ''}; */
+    gap: 1rem;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 1rem;
+
+    :hover{
+      background-color: ${props => props.color ? tint(0.3, props.color) : ''};
+    }
+  }
+
+  img{
+    width: 100%;
+    max-width: 100px;
+  }
+
+  p{
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+  }
 `

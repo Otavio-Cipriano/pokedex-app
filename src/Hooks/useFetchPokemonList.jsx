@@ -29,8 +29,6 @@ export default function useFetchPokemonList(page, limit) {
 
     }, [page, limit, offset])
 
-    useEffect(()=>{console.log(loading)},[loading])
-
     return { loading, error, pokemonList, hasMore }
 }
 

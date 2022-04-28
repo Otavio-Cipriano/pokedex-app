@@ -5,28 +5,25 @@ import colours from "../Themes/pokemonTypeColors";
 export default function useFetchPokemon(pokemonName) {
     const [pokemon, setPokemon] = useState()
     const [color, setColor] = useState()
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
+    const [loading, setLoading] = useState()
+    const [error, setError] = useState()
 
     useEffect(()=>{
         if(!pokemonName) return
-
-        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then(async res =>{
-            let data = await res.json()
+        setLoading(true)
+        setError(undefined)
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+        .then((res) => res.json() )
+        .then((data) =>{
             setPokemon(data)
             setColor(colours[data?.types[0]?.type?.name])
             setLoading(false)
-            // console.log(res)
-        }).catch(err =>{
+        })
+        .catch(err =>{
             setError(true)
             console.log(err)
         })
     },[pokemonName])
-
-    useEffect(()=>{
-        if(!pokemon) return
-        setLoading(false)
-    },[pokemon])
 
     return {pokemon, color, loading, error}
 }

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default function Spinner({size}) {
     return (
-        <Spin size={size}/>
+        <Spin size={size} className="spin"/>
     )
 }
 

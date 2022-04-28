@@ -5,36 +5,37 @@ import colours from '../Themes/pokemonTypeColors';
 
 import TypesBadge from './TypesBadge';
 
+import { Link } from 'react-router-dom'
 
 
-export default function PokemonCard({ name }){
-    const {pokemon, color, loading, error} = useFetchPokemon(name)
+
+export default function PokemonCard({ name }) {
+    const { pokemon, color, loading } = useFetchPokemon(name)
 
     return (
-        <Card bgColor={color} loading={loading ? 'true' : 'false'}>
+        <Card bgcolor={color} loading={loading ? 'true' : 'false'} to={`/${name}`}>
             <CardTitle>
                 {pokemon?.name}
             </CardTitle>
             <CardTypes>
                 {
-                    pokemon?.types.map((type, idx)=>{
-                        return(
+                    pokemon?.types.map((type, idx) => {
+                        return (
                             <TypesBadge key={idx} color={colours[type.type.name]}>{type.type.name}</TypesBadge>
                         )
                     })
                 }
             </CardTypes>
             <CardSprite>
-                <img src={pokemon?.sprites.other['official-artwork'].front_default} alt={pokemon?.name}/>
+                <img src={pokemon?.sprites.other['official-artwork'].front_default} alt={pokemon?.name} />
             </CardSprite>
             <CardNb>{pokemon?.id ? `#0${pokemon?.id}` : ''}</CardNb>
         </Card>
     )
 }
 
-const Card = styled.div`
-    background: ${props => props.loading ? 'background: linear-gradient(to bottom, #dddddd 66%, transparent);' : ''};
-    background-color: ${props => props.bgColor ? props.bgColor : ''};
+const Card = styled(Link)`
+    background: ${props => props.bgcolor ? props.bgcolor : ' '};
     border-radius: 15px;
     padding: 1rem 1.5rem;
     position: relative;
@@ -42,6 +43,7 @@ const Card = styled.div`
     animation-name: show;
     animation-duration: 0.8s;
     animation-timing-function: ease-in;
+    text-decoration: none;
 
     &:hover{
         transform: scale(1.05);
@@ -51,7 +53,7 @@ const Card = styled.div`
     @keyframes show{
         0%{
             opacity: 0;
-            transform: translateY(100px)
+            transform: translateY(100px);
         }
         100%{
             opacity: 1;

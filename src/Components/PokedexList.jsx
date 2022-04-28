@@ -46,7 +46,7 @@ const Row = styled.div`
     /* min-height: 100vh; */
     /* background-color: #2b347c; */
 
-    >div{
+    >a{
         width: 100%;
         min-height: 285px;
         max-width: 450px;
