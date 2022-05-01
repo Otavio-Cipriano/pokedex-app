@@ -4,6 +4,10 @@ import colours from '../Themes/pokemonTypeColors';
 import TypesBadge from './TypesBadge';
 
 export default function PokemonInfo({ pokemon, species }) {
+  const generateGenera = () => {
+    return species?.genera.filter(gener => gener.language.name === 'en' || gener.language.name === 'ja-Hrkt')
+  }
+
   return (
     <Info>
       <InfoTypes>
@@ -28,14 +32,12 @@ export default function PokemonInfo({ pokemon, species }) {
       <InfoText>
         <h3>Genera: </h3>
         {
-          species?.genera.map((specie, idx) => {
-            if (specie.language.name === 'en' || specie.language.name === 'ja-Hrkt') {
-              return (
-                <span key={idx}>
-                  {specie.genus}
-                </span>
-              )
-            }
+          generateGenera()?.map((specie, idx) => {
+            return (
+              <span key={idx}>
+                {specie.genus}
+              </span>
+            )
           })
         }
       </InfoText>
@@ -48,8 +50,8 @@ export default function PokemonInfo({ pokemon, species }) {
       <div>
         <h2>Base Stats</h2>
         {
-          pokemon?.stats.map((stat, idx)=>{
-            return(
+          pokemon?.stats.map((stat, idx) => {
+            return (
               <div key={idx}>
                 <p>{stat.stat.name}</p>
                 <p>{stat.base_stat}</p>
@@ -68,12 +70,17 @@ const Info = styled.div`
     max-height: 600px;
     overflow-y: scroll;
     margin: 10rem auto 0 auto;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     padding: 2rem;
 
     >div{
       border-left: 4px solid white;
       padding-left: 10px;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
     }
 `;
 
@@ -82,6 +89,7 @@ const InfoText = styled.div`
     align-items: center;
     gap: 10px;
     margin: 10px 0;
+    text-transform: capitalize;
 
     h3{
       margin: 0;

@@ -7,6 +7,28 @@ const GlobalStyle = createGlobalStyle`
 }
 *{
   box-sizing: border-box;
+
+      /* width */
+      ::-webkit-scrollbar {
+      width: 20px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: rgba(41, 41, 41, 0.1);
+      border-radius: 20px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgba(41, 41, 41, 0.5);
+      border-radius: 20px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(41, 41, 41, 0.6);
+    }
 }
 body{
   background-color: var(--clr-medium-gray);

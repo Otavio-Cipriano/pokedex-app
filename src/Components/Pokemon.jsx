@@ -52,7 +52,7 @@ const UpperText = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin: 3rem 0;
+    margin: 3rem;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 `;
 
@@ -66,7 +66,7 @@ const Title = styled.h1`
 const JapaneseTitle = styled.h2`
     position: absolute;
     top: 1rem;
-    left: -10px;
+    left: 1rem;
     font-size: 5rem;
     opacity: 0.3;
     margin: 0;
