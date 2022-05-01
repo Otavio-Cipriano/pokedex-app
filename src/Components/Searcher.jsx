@@ -62,6 +62,7 @@ const Wrap = styled.div`
   >h2{
     margin: 0;
     font-size: 2.1rem;
+    color: white;
   }
 
   >div{

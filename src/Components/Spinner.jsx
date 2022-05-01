@@ -8,8 +8,8 @@ export default function Spinner({size}) {
 
 
 const Spin = styled.div`
-    border: 20px solid rgba(43, 52, 124, 0.8) ;
-    border-right: 20px solid rgba(43, 52, 124, 1);
+    border: 8px solid rgba(43, 52, 124, 0.8) ;
+    border-right: 8px solid rgba(43, 52, 124, 1);
     height: ${props => props.size ? props.size : '25px'};
     width: ${props => props.size ? props.size : '25px'};
     margin: auto;
