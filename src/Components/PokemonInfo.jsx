@@ -103,9 +103,9 @@ const Bar = styled.div`
 
 const Info = styled.div`
     max-width: 500px;
-    max-height: 600px;
+    max-height: 680px;
     overflow-y: scroll;
-    margin: 6rem auto 0 auto;
+    margin: 3rem auto 0 auto;
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(30px);
     background-color: rgba(0, 0, 0, 0.2);

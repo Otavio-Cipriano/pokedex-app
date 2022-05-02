@@ -7,6 +7,7 @@ import Spinner from './Spinner'
 import PokemonInfo from './PokemonInfo';
 import useFetchPokemonSpecies from '../Hooks/useFetchPokemonSpecies';
 import Regions from '../Utils/Regions';
+import PaginationCard from './PaginationCard';
 
 export default function Pokemon() {
     const { name } = useParams()
@@ -39,6 +40,10 @@ export default function Pokemon() {
                         <PokemonInfo pokemon={pokemon} species={species} />
                     </div>
                 </Grid>
+                <Pagination>
+                    <PaginationCard pokemonEntry={pokemon?.id ? pokemon?.id - 1 : ''} prev={true} />
+                    <PaginationCard pokemonEntry={pokemon?.id ? pokemon?.id + 1 : ''} />
+                </Pagination>
             </Container>
         </Wrap>
     )
@@ -50,6 +55,7 @@ const Wrap = styled.main`
     min-height: 100vh;
     background-color: ${props => props.color};
     color: white;
+    padding: 1rem;
 `;
 
 const UpperText = styled.div`
@@ -103,8 +109,7 @@ const Sprite = styled.div`
 
 const Grid = styled.div`
     display: flex;
-    /* grid-template-columns: auto auto; */
-    justify-content: space-around;
+    gap: 1rem;
 
     >div {
         position: relative;
@@ -112,6 +117,19 @@ const Grid = styled.div`
     }
 
     >div:last-of-type{
-        max-width: 470px;
+        max-width: 500px;
+        padding: 0 1.5rem;
     }
+
+    @media (max-width: 1000px){
+        flex-direction: column;
+        align-items: center;
+    }
+`;
+
+const Pagination = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 `;

@@ -5,10 +5,10 @@ import PokedexDetail from './PokedexDetail'
 
 export default function Main() {
   return (
-    <BrowserRouter basemname={`${process.env.PUBLIC_URL}`}>
+    <BrowserRouter basename={`${process.env.PUBLIC_URL}`}>
         <Routes>
-            <Route  path="/" element={<Pokedex/>}/>
-            <Route path="/:name" element={<PokedexDetail/>}/>
+            <Route exact  path="/" element={<Pokedex/>}/>
+            <Route exact path="/:name" element={<PokedexDetail/>}/>
         </Routes>
     </BrowserRouter>
   )
