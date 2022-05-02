@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 
 export default function useFetchPokemonSpecies(pokemonName) {
     const [species, setSpecies] = useState()
-    const [loading, setLoading] = useState()
+    const [speciesLoading, setSpeciesLoading] = useState()
     const [error, setError] = useState()
 
     useEffect(()=>{
         if(!pokemonName) return
-        setLoading(true)
+        setSpeciesLoading(true)
         setError(undefined)
         fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`)
         .then((res) => res.json() )
         .then((data) =>{
             setSpecies(data)
-            setLoading(false)
+            setSpeciesLoading(false)
         })
         .catch(err =>{
             setError(true)
@@ -21,5 +21,5 @@ export default function useFetchPokemonSpecies(pokemonName) {
         })
     },[pokemonName])
 
-    return {species, loading, error}
+    return {species, speciesLoading, error}
 }

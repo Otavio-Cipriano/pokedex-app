@@ -6,14 +6,15 @@ import { useParams } from 'react-router';
 import Spinner from './Spinner'
 import PokemonInfo from './PokemonInfo';
 import useFetchPokemonSpecies from '../Hooks/useFetchPokemonSpecies';
+import Regions from '../Utils/Regions';
 
 export default function Pokemon() {
     const { name } = useParams()
-    const { pokemon, loading, color } = useFetchPokemon(name)
-    const { species } = useFetchPokemonSpecies(name)
-    console.log(species, pokemon)
+    const { pokemon, pokemonLoading, color } = useFetchPokemon(name.toLowerCase())
+    const { species, speciesLoading } = useFetchPokemonSpecies(name.toLowerCase())
 
-    if (loading) return <Spinner />
+
+    if (pokemonLoading || speciesLoading) return <Spinner />
 
     return (
         <Wrap color={color ? transparentize(0.4, color) : 'inherit'}>
@@ -27,6 +28,9 @@ export default function Pokemon() {
                         <JapaneseTitle>
                             {species?.names[0]?.name}
                         </JapaneseTitle>
+                        <RegionText>
+                            Region: {Regions[species?.generation.name]}
+                        </RegionText>
                         <Sprite>
                             <img src={pokemon?.sprites.other['official-artwork'].front_default} alt={pokemon?.name} />
                         </Sprite>
@@ -42,8 +46,8 @@ export default function Pokemon() {
 
 
 const Wrap = styled.main`
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
     background-color: ${props => props.color};
     color: white;
 `;
@@ -54,6 +58,17 @@ const UpperText = styled.div`
     gap: 1rem;
     margin: 3rem;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+`;
+
+const RegionText = styled.p`
+    position: absolute;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    transform: rotate(90deg);
+    left: -1rem;
+    top: 13rem;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 `;
 
 const Title = styled.h1`
@@ -77,15 +92,26 @@ const PokemonEntry = styled.span`
 `
 
 const Sprite = styled.div`
-    max-width: 400px;
-    margin: auto;
+    max-width: 550px;
+    width: 100%;
+    margin: 4rem auto 0 auto;
+
+    >img{
+        width: 100%;
+    }
 `;
 
 const Grid = styled.div`
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
+    /* grid-template-columns: auto auto; */
+    justify-content: space-around;
 
     >div {
         position: relative;
+        width: 100%;
+    }
+
+    >div:last-of-type{
+        max-width: 470px;
     }
 `;
