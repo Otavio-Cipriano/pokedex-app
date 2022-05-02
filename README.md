@@ -21,7 +21,6 @@ This is a project based in an challenge on [Weekly Projects](https://github.com/
   
 - **Bonus features**
   - User can see pokemon's stats with different bars.
-  - User can see pokemon's moveset.
   - User can see (any other information you want).
 
 
