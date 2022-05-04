@@ -9,7 +9,7 @@ import { tint } from "polished";
 
 import Container from './Container'
 import { Link } from 'react-router-dom'
-
+import Spinner from './Spinner'
 
 export default function Searcher() {
   const [query, setQuery] = useState()
@@ -19,13 +19,13 @@ export default function Searcher() {
 
   const handleKey = (e) => {
     if (e.key === "Enter") {
-      setQuery(inputRef.current.value)
+      setQuery(inputRef.current.value.toLowerCase())
     }
   }
   const handleClick = (e) => {
     e.preventDefault()
     if (!inputRef.current.value) return;
-    setQuery(inputRef.current.value)
+    setQuery(inputRef.current.value.toLowerCase())
   }
 
   return (
@@ -33,7 +33,12 @@ export default function Searcher() {
       <Wrap>
         <h2>Pokedex</h2>
         <div>
-          <Button onClick={handleClick}><FaSearch /></Button>
+          <Button onClick={handleClick}>
+            {
+              loading? <Spinner/> :
+              <FaSearch />
+            }
+          </Button>
           <Input type="text" ref={inputRef} onKeyDown={handleKey} placeholder="Enter a name or pokedex number" />
           <Result searched={pokemon || error ? 'flex' : 'none'} color={color}>
             {loading && !error ? 'loading...' : ''}
@@ -129,5 +134,7 @@ const Result = styled.div`
     font-weight: bold;
     font-size: 1.2rem;
     text-transform: capitalize;
+    padding: 1rem;
+    text-align: center;
   }
 `
