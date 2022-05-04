@@ -24,7 +24,7 @@ This is a project based in an challenge on [Weekly Projects](https://github.com/
   - User can see (any other information you want).
 
 
-### Running the Application
+## Running the Application
 
 Yarn need to be installed to run the application
 
