@@ -39,7 +39,7 @@ export default function Searcher() {
             {loading && !error ? 'loading...' : ''}
             {
               pokemon && !error ?
-                <Link href={`/${pokemon?.name}`}>
+                <Link to={`/${pokemon?.name}`}>
                   <img src={pokemon?.sprites.other['official-artwork'].front_default} alt={pokemon?.name} />
                   <p>{pokemon?.name}</p>
                 </Link>
