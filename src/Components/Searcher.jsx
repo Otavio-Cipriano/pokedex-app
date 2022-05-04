@@ -8,6 +8,8 @@ import useFetchPokemon from "../Hooks/useFetchPokemon";
 import { tint } from "polished";
 
 import Container from './Container'
+import { Link } from 'react-router-dom'
+
 
 export default function Searcher() {
   const [query, setQuery] = useState()
@@ -37,10 +39,10 @@ export default function Searcher() {
             {loading && !error ? 'loading...' : ''}
             {
               pokemon && !error ?
-                <a href={`/${pokemon?.name}`}>
+                <Link href={`/${pokemon?.name}`}>
                   <img src={pokemon?.sprites.other['official-artwork'].front_default} alt={pokemon?.name} />
                   <p>{pokemon?.name}</p>
-                </a>
+                </Link>
                 :
                 error ? <p>Not Found</p> : ''
             }
