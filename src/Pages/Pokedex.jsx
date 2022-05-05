@@ -1,6 +1,8 @@
-import Container from "../Components/Container"
-import PokedexList from "../Components/PokedexList"
-import Searcher from "../Components/Searcher"
+
+//components
+import Container from "../Components/Container/Container"
+import PokedexList from "../Components/PokedexList/PokedexList"
+import Searcher from "../Components/Searcher/Searcher"
 
 export default function Pokedex() {
 

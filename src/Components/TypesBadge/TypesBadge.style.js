@@ -1,11 +1,6 @@
+import styled from "styled-components"
 import { tint } from 'polished'
-import styled from 'styled-components'
 
-export default function TypesBadge({children, color}) {
-  return (
-    <Type color={color}>{children}</Type>
-  )
-}
 
 const Type = styled.span`
     color: white;
@@ -19,3 +14,5 @@ const Type = styled.span`
     padding: 5px 1.5rem;
     font-size: 1rem;
 `
+
+export { Type }
