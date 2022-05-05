@@ -31,8 +31,6 @@ const GlobalStyle = createGlobalStyle`
     }
 }
 body{
-  background-color: var(--clr-medium-gray);
-  color: black;
   font-family: 'Poppins', sans-serif;
   margin: 0;
   min-width: 300px;

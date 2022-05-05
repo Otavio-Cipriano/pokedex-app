@@ -7,11 +7,11 @@ const Card = styled(Link)`
     border-radius: 15px;
     padding: 1rem 1.5rem;
     position: relative;
-    /* transition: ease 0.2s; */
     animation-name: show;
     animation-duration: 0.8s;
     animation-timing-function: ease-in;
     text-decoration: none;
+    box-shadow: 2px 3px 10px hsl(0deg 0% 0% / 29%);
 
     &:hover{
         transform: scale(1.05);

@@ -6,6 +6,8 @@ export const Row = styled.div`
     align-content: flex-start;
     display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
     /* min-height: 100vh; */
     /* background-color: #2b347c; */
 
@@ -13,7 +15,6 @@ export const Row = styled.div`
         width: 100%;
         min-height: 285px;
         max-width: 450px;
-        margin: 1rem;
     }
 `;
 

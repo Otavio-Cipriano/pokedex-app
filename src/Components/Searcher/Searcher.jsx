@@ -18,19 +18,24 @@ import useFetchPokemon from "../../Hooks/useFetchPokemon";
 
 export default function Searcher() {
   const [query, setQuery] = useState()
-  const { pokemon, color, loading, error } = useFetchPokemon(query)
+  const [isSearchin, setIsSearchin] = useState()
+  const { pokemon, color, pokemonLoading, error } = useFetchPokemon(query)
 
   const inputRef = useRef()
 
   const handleKey = (e) => {
     if (e.key === "Enter") {
-      setQuery(inputRef.current.value.toLowerCase())
+      if (!inputRef.current.value) return;
+      setIsSearchin(false)
+      setQuery(() => inputRef.current.value.toLowerCase())
     }
   }
   const handleClick = (e) => {
     e.preventDefault()
     if (!inputRef.current.value) return;
-    setQuery(inputRef.current.value.toLowerCase())
+    console.log(inputRef.current.value)
+    setIsSearchin(false)
+    setQuery(() => inputRef.current.value.toLowerCase())
   }
 
   return (
@@ -40,15 +45,16 @@ export default function Searcher() {
         <div>
           <style.Button onClick={handleClick}>
             {
-              loading? <Spinner/> :
-              <FaSearch />
+              pokemonLoading ? <Spinner bwidth={'4px'}/> :
+                <FaSearch />
             }
           </style.Button>
-          <style.Input type="text" ref={inputRef} onKeyDown={handleKey} placeholder="Enter a name or pokedex number" />
-          <style.Result searched={pokemon || error ? 'flex' : 'none'} color={color}>
-            {loading && !error ? 'loading...' : ''}
+          <style.Input type="text" ref={inputRef} onKeyDown={handleKey} onChange={()=> setIsSearchin(true)} placeholder="Enter a name or pokedex number" />
+          <style.Result 
+          searched={pokemon || error ||pokemonLoading ? 'flex' : 'none'} 
+          color={color}>
             {
-              pokemon && !error ?
+              pokemon && !error && !isSearchin?
                 <Link to={`/${pokemon?.name}`}>
                   <img src={pokemon?.sprites.other['official-artwork'].front_default} alt={pokemon?.name} />
                   <p>{pokemon?.name}</p>

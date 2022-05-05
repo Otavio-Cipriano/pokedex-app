@@ -8,22 +8,25 @@ export default function useFetchPokemon(pokemonName) {
     const [pokemonLoading, setPokemonLoading] = useState()
     const [error, setError] = useState()
 
-    useEffect(()=>{
-        if(!pokemonName) return
+    useEffect(() => {
+        if (!pokemonName) return;
         setPokemonLoading(true)
         setError(undefined)
+        setPokemon(undefined)
         fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-        .then((res) => res.json() )
-        .then((data) =>{
-            setPokemon(data)
-            setColor(colours[data?.types[0]?.type?.name])
-            setPokemonLoading(false)
-        })
-        .catch(err =>{
-            setError(true)
-            console.log(err)
-        })
-    },[pokemonName])
+            .then((res) => res.json())
+            .then((data) => {
+                setPokemon(data)
+                setColor(colours[data?.types[0]?.type?.name])
+                setPokemonLoading(false)
+            })
+            .catch(err => {
+                setError(true)
+                setPokemonLoading(false)
+            })
 
-    return {pokemon, color, pokemonLoading, error}
+
+    }, [pokemonName])
+
+    return { pokemon, color, pokemonLoading, error }
 }
