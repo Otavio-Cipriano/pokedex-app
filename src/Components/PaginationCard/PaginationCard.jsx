@@ -10,7 +10,7 @@ import useFetchPokemon from '../../Hooks/useFetchPokemon';
 export default function PaginationCard({ pokemonEntry, prev }) {
     const { pokemon, pokemonLoading, error } = useFetchPokemon(pokemonEntry)
 
-    if (pokemonLoading || error || !pokemon) return ''
+    if (pokemonLoading || error || !pokemon) return (<div></div>)
 
     return (
         <style.Wrap prev={`${prev}`}>
