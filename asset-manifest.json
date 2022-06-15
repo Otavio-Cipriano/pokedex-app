@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/pokedex-app/static/js/main.b994cf9d.js",
-    "index.html": "/pokedex-app/index.html",
-    "main.b994cf9d.js.map": "/pokedex-app/static/js/main.b994cf9d.js.map"
+    "main.js": "/static/js/main.a7b81977.js",
+    "index.html": "/index.html",
+    "main.a7b81977.js.map": "/static/js/main.a7b81977.js.map"
   },
   "entrypoints": [
-    "static/js/main.b994cf9d.js"
+    "static/js/main.a7b81977.js"
   ]
 }
