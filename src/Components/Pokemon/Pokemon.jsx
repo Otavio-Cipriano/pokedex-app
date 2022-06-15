@@ -4,9 +4,10 @@ import { useParams } from 'react-router';
 
 //components
 import PaginationCard from '../PaginationCard/PaginationCard';
-import Spinner from '../Spinner/Spinner'
 import PokemonInfo from '../PokemonInfo/PokemonInfo';
 import Container from '../Container/Container'
+import PokemonSpinner from './PokemonSpinner';
+
 
 //styling
 import * as style from './Pokemon.style'
@@ -24,7 +25,7 @@ export default function Pokemon() {
     const { species, speciesLoading } = useFetchPokemonSpecies(name.toLowerCase())
 
 
-    if (pokemonLoading || speciesLoading) return <Spinner />
+    if (pokemonLoading || speciesLoading) return <PokemonSpinner />
 
     return (
         <style.Wrap color={color ? transparentize(0.4, color) : 'inherit'}>

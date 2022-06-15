@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+
 export const Wrap = styled.main`
 min-width: 100vw;
 min-height: 100vh;
@@ -82,4 +83,27 @@ display: flex;
 justify-content: space-between;
 margin-top: 4rem;
 text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+`;
+
+export const SpinnerBox = styled.div`
+    width: 200px;
+    height: 150px;
+    box-shadow: 0 0 10px 0px rgb(0 0 0 / 30%);
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+    
+    p{
+        color: gray;
+        margin-top: 5px;
+        margin-bottom: -0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+`;
+
+export const SpinnerContainer = styled.div`
+    height: 95vh !important;
+    display: grid;
+    place-items: center;
 `;
