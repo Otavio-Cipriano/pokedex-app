@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Spin = styled.div`
+export const Spin = styled.div`
     border: 8px solid rgba(180, 180, 180, 1) ;
     border-right: 8px solid rgba(100, 100, 100, 1) ;
     border-width: ${props => props.bwidth? props.bwidth : '8px'};
@@ -20,4 +20,22 @@ const Spin = styled.div`
 }
 `;
 
-export { Spin }
+export const SpinnerBox = styled.div`
+    width: 190px;
+    height: 150px;
+    box-shadow: 0 0 10px 0px rgb(0 0 0 / 30%);
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+    
+    p{
+        color: gray;
+        margin-top: 5px;
+        margin-bottom: -0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 1rem;
+    }
+`;
+
+

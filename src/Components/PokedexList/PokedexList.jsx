@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 //components
 import PokemonCard from '../PokemonCard/PokemonCard';
+import Spinner from '../Spinner/Spinner';
 
 //styles
 import * as style from './PokdexList.style'
@@ -41,7 +42,7 @@ export default function PokedexList() {
                 }
             </style.Row>
             <style.LoaderContainer ref={containerRef}>
-                {loading && <style.Spin style={{ margin: '20px auto' }} />}
+                {loading && <Spinner bwidth={'6px'} size={'30px'}/>}
             </style.LoaderContainer>
         </>
     )

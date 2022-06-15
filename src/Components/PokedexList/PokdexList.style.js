@@ -19,24 +19,7 @@ export const Row = styled.div`
 `;
 
 export const LoaderContainer = styled.div`
-    font-size: 50px;
-`;
-
-export const Spin = styled.div`
-    border: 8px solid rgba(180, 180, 180, 1) ;
-    border-right: 8px solid rgba(100, 100, 100, 1) ;
-    height: 40px;
-    width: 40px;
-    margin: auto;
-    border-radius: 50%;
-    animation-name: spin;
-    animation-duration: 0.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear; 
-    transform-origin: center;
-
-    @keyframes spin{
-        from{transform: rotate(0deg)}
-        to{transform: rotate(360deg)}
-    }
+    display: grid;
+    place-items: center;
+    margin: 0 0 1rem 0;
 `;

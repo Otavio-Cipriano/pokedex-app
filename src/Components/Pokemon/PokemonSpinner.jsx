@@ -10,7 +10,6 @@ export default function PokemonSpinner() {
                 <style.SpinnerBox>
                     <div>
                         <Spinner bwidth={'5px'} size={'30px'}/>
-                        <p>Loading</p>
                     </div>
                 </style.SpinnerBox>
             </style.SpinnerContainer>
