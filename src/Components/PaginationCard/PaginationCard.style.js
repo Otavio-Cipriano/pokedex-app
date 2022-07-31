@@ -12,6 +12,7 @@ export const Wrap = styled.div`
     }
 `;
 
+
 export const CardLink = styled(Link)`
     text-decoration: none;
     color: white;
@@ -25,4 +26,8 @@ export const CardLink = styled(Link)`
     :hover{
         color: #dddddd;
     }
+`;
+
+export const HomeLink = styled(CardLink)`
+    font-size: 2.1rem;
 `;

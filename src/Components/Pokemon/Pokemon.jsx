@@ -52,6 +52,7 @@ export default function Pokemon() {
                 </style.Grid>
                 <style.Pagination>
                     <PaginationCard pokemonEntry={pokemon?.id ? pokemon?.id - 1 : ''} prev={true} />
+                    <PaginationCard home />
                     <PaginationCard pokemonEntry={pokemon?.id ? pokemon?.id + 1 : ''} />
                 </style.Pagination>
             </Container>
