@@ -45,7 +45,7 @@ export default function Searcher() {
         <div>
           <style.Button onClick={handleClick}>
             {
-              pokemonLoading ? <Spinner bwidth={'4px'}/> :
+              pokemonLoading ? <Spinner bwidth={'4px'} notBox/> :
                 <FaSearch />
             }
           </style.Button>
