@@ -5,7 +5,7 @@ import PokedexDetail from './PokedexDetail'
 
 export default function Main() {
   return (
-    <BrowserRouter >
+    <BrowserRouter>
         <Routes>
             <Route exact  path="/" element={<Pokedex/>}/>
             <Route exact path="/:name" element={<PokedexDetail/>}/>
