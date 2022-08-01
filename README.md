@@ -34,6 +34,7 @@ This is a project based in a challenge on [Weekly Projects](https://github.com/f
 - [React](https://pt-br.reactjs.org/)
 - [React Router Dom 6](https://reactrouter.com/)
 - [styled-components](https://styled-components.com/)
+- [ViteJs](https://vitejs.dev/)
 
 ## Running the Application
 
