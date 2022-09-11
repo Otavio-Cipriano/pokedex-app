@@ -5,7 +5,7 @@ import TypesBadge from '../TypesBadge/TypesBadge';
 import * as style from './PokemonInfo.style'
 
 //utils
-import colours from '../../Themes/pokemonTypeColors';
+import colours from '../../themes/pokemonTypeColors';
 
 export default function PokemonInfo({ pokemon, species }) {
   const generateGenera = () => {

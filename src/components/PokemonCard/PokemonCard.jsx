@@ -2,13 +2,13 @@
 import TypesBadge from '../TypesBadge/TypesBadge';
 
 //hooks
-import useFetchPokemon from '../../Hooks/useFetchPokemon';
+import useFetchPokemon from '../../hooks/useFetchPokemon';
 
 //styling
 import * as style from './PokemonCard.style'
 
 //utils
-import colours from '../../Themes/pokemonTypeColors';
+import colours from '../../themes/pokemonTypeColors';
 
 
 export default function PokemonCard({ name }) {

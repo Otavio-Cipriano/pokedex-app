@@ -9,8 +9,8 @@ import Spinner from '../Spinner/Spinner';
 import * as style from './PokdexList.style'
 
 //hooks
-import useFetchPokemonList from '../../Hooks/useFetchPokemonList';
-import useElementOnScreen from '../../Hooks/useElementOnScreen';
+import useFetchPokemonList from '../../hooks/useFetchPokemonList';
+import useElementOnScreen from '../../hooks/useElementOnScreen';
 
 export default function PokedexList() {
     const [currentPage, setCurrentPage] = useState(1)

@@ -1,5 +1,5 @@
 import React from 'react'
-import Pokemon from '../Components/Pokemon/Pokemon'
+import Pokemon from '../components/Pokemon/Pokemon'
 
 export default function PokedexDetail() {
 

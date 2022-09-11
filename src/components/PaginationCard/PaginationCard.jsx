@@ -5,7 +5,7 @@ import { FaCaretRight, FaCaretLeft, FaHome } from 'react-icons/fa'
 import * as style from './PaginationCard.style'
 
 //hooks
-import useFetchPokemon from '../../Hooks/useFetchPokemon';
+import useFetchPokemon from '../../hooks/useFetchPokemon';
 
 export default function PaginationCard({ pokemonEntry, prev, home }) {
     const { pokemon, pokemonLoading, error } = useFetchPokemon(pokemonEntry)

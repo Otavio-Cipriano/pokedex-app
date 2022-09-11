@@ -1,5 +1,5 @@
 import React from 'react'
-import GlobalStyle from '../Themes/globalStyle'
+import GlobalStyle from '../themes/globalStyle'
 import Routing from './Routing';
 
 export default function App() {

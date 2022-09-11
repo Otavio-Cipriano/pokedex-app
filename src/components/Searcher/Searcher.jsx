@@ -13,7 +13,7 @@ import Spinner from '../Spinner/Spinner'
 import * as style from './Searcher.style'
 
 //hooks
-import useFetchPokemon from "../../Hooks/useFetchPokemon";
+import useFetchPokemon from "../../hooks/useFetchPokemon";
 
 
 export default function Searcher() {

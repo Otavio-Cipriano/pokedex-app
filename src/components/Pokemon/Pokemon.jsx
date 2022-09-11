@@ -13,11 +13,11 @@ import PokemonSpinner from './PokemonSpinner';
 import * as style from './Pokemon.style'
 
 //hooks
-import useFetchPokemon from '../../Hooks/useFetchPokemon';
-import useFetchPokemonSpecies from '../../Hooks/useFetchPokemonSpecies';
+import useFetchPokemon from '../../hooks/useFetchPokemon';
+import useFetchPokemonSpecies from '../../hooks/useFetchPokemonSpecies';
 
 //utils
-import Regions from '../../Utils/Regions';
+import Regions from '../../utils/Regions';
 
 export default function Pokemon() {
     const { name } = useParams()
