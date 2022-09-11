@@ -36,6 +36,18 @@ export const SpinnerBox = styled.div`
         letter-spacing: 2px;
         font-size: 1rem;
     }
+
+    img{
+        animation: spin 0.5s ease infinite;
+        max-width: 60px;
+        margin-left: 0.8rem;
+        opacity: 0.9;
+    }
+
+    @keyframes spin{
+    from{transform: rotate(0deg)}
+    to{transform: rotate(360deg)}
+}
 `;
 
 
