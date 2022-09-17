@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import FetchPokemon from "../services/fetchPokemon";
 
-import colours from "../Themes/pokemonTypeColors";
+import colours from "../themes/pokemonTypeColors";
 
 export default function useFetchPokemon(pokemonName) {
     const [pokemon, setPokemon] = useState()
