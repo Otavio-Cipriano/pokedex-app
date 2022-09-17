@@ -1,13 +1,33 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+
+const afterLoad = keyframes`
+    0%{
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+`
 
 
 export const Wrap = styled.main`
-min-width: 100vw;
-min-height: 100vh;
-background-color: ${props => props.color};
-color: white;
-padding: 1rem;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: ${props => props.color};
+    color: white;
+    padding: 1rem;
+    overflow: hidden;
 `;
+
+export const wrapAnimation = styled.div`
+    animation-name: ${afterLoad};
+    animation-duration: 0.3s;
+    animation-timing-function: ease;
+`;
+
 
 export const UpperText = styled.div`
 display: flex;
